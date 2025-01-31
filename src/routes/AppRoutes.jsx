@@ -5,6 +5,7 @@ import LoginPage from '../components/forms/LoginPage';
 import SignupPage from '../components/forms/SignupPage';
 import Homepage from '../components/home/Homepage';
 import NotFoundPage from '../components/home/NotFoundPage';
+import ForgetPassword from '../components/forms/ForgetPassword';
 
 
 const AppRoutes = () => {
@@ -13,6 +14,7 @@ const AppRoutes = () => {
       <Route path="/" element={<Homepage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route path="/forgetpassword" element={<ForgetPassword />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

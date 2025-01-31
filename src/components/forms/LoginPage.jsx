@@ -51,9 +51,9 @@ function LoginPage() {
               Remember Me
             </label>
           </div>
-          <a href="#" className="inline-block align-baseline text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400">
+          <Link to="/forgetpassword" className="inline-block align-baseline text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400">
             Forgot Password?
-          </a>
+          </Link>
         </div>
         <div className="flex items-center justify-between">
           <button
