@@ -3,10 +3,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import Footer from '../home/Footer';
+import Navbar from '../home/NavBar';
 
 const ForgetPassword = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
+    <>
+    <Navbar />
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white rounded-lg shadow-lg p-8">
         <h2 className="text-3xl font-bold">Forgot Password</h2>
         <p className="text-xl">Enter your email address and we will send you a link to reset your password.</p>
@@ -37,6 +41,8 @@ const ForgetPassword = () => {
         </p>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
+import Navbar from '../home/NavBar'
+import Footer from '../home/Footer'
 
 const NewPassword =()=> {
   const navigate = useNavigate()
@@ -23,7 +25,9 @@ const NewPassword =()=> {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen dark:bg-gray-900">
+    <>
+      <Navbar />
+    <div className="flex justify-center items-center min-h-screen">
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
         <h2 className="text-3xl font-bold">Enter OTP</h2>
         <p className="text-xl">We have sent you an OTP on your registered mobile number. Please enter the OTP below.</p>
@@ -55,6 +59,8 @@ const NewPassword =()=> {
         </form>
       </div>
     </div>
+    <Footer />
+    </>
   )
 }
 export default NewPassword;

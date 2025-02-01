@@ -1,12 +1,17 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../home/NavBar";
+import Footer from "../home/Footer";
 
 function LoginPage() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <form className="bg-white dark:bg-gray-800 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
-        <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Login</h2>
+    <>
+      <Navbar />
+
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900">
+      <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
+        <h2  className="text-2xl font-bold text-gray-400 text-center mb-6 underline">Login</h2>
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -17,7 +22,10 @@ function LoginPage() {
           <input
             type="email"
             id="email"
-            className="appearance-none border border-gray-300 dark:border-gray-700 rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+            className="text-gray-900 border border-gray-300 text-gray-900 text-sm rounded-lg
+             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+              dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
+               dark:focus:border-blue-500"
             placeholder="Enter your email"
             required
           />
@@ -32,7 +40,10 @@ function LoginPage() {
           <input
             type="password"
             id="password"
-            className="appearance-none border border-gray-300 dark:border-gray-700 rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+            className="text-gray-900 border border-gray-300 text-gray-900 text-sm rounded-lg
+             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+              dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
+               dark:focus:border-blue-500"
             placeholder="Enter your password"
             required
           />
@@ -74,6 +85,8 @@ function LoginPage() {
         </p>
       </form>
     </div>
+    <Footer />
+    </>
   );
 }
 
