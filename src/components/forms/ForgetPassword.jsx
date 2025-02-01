@@ -23,9 +23,11 @@ const ForgetPassword = () => {
               required
             />
           </div>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button>
+          <Link to="/newpassword" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center">
             <FontAwesomeIcon icon={faLock} className="mr-2" />
             Send reset link
+          </Link>
           </button>
         </form>
         <p className="mt-4">
