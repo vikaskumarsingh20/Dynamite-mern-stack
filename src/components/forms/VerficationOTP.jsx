@@ -22,7 +22,7 @@ const VerficationOTP = () => {
     <>
       <Navbar />
 
-      <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900">
+      <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500">
       <div className=" shadow bg-white dark:bg-gray-800 shadow-md rounded-lg p-8">
         <h2 className="text-3xl font-bold">Enter OTP</h2>
         <p className="text-xl">

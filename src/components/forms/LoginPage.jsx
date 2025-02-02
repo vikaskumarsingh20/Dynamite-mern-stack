@@ -9,7 +9,7 @@ function LoginPage() {
     <>
       <Navbar />
 
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500">
       <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
         <h2  className="text-2xl font-bold text-gray-400 text-center mb-6 underline">Login</h2>
         <div className="mb-4">

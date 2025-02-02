@@ -27,7 +27,7 @@ const NewPassword =()=> {
   return (
     <>
       <Navbar />
-    <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500">
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
         <h2 className="text-3xl font-bold">Enter OTP</h2>
         <p className="text-xl">We have sent you an OTP on your registered mobile number. Please enter the OTP below.</p>

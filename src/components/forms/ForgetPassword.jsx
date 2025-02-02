@@ -10,7 +10,7 @@ const ForgetPassword = () => {
   return (
     <>
     <Navbar />
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500">
       <div className="bg-white rounded-lg shadow-lg p-8">
         <h2 className="text-3xl font-bold">Forgot Password</h2>
         <p className="text-xl">Enter your email address and we will send you a link to reset your password.</p>
