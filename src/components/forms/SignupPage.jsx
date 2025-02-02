@@ -10,6 +10,12 @@ function FormTailwind() {
       <Navbar />
 
       <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500">
+      <div className=" flex items-center justify-center mx-auto">
+    <img
+            src="src\assets\images\Animation-PNG-HD.png"
+            alt="Workflow"
+            className="h-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 "
+          />
       <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
         <h2 className="text-2xl font-bold text-gray-400 text-center mb-6 underline">
           Register new account
@@ -97,6 +103,7 @@ function FormTailwind() {
           Register new account
         </button>
       </form>
+      </div>
     </div>
     <Footer />
     </>

@@ -13,28 +13,34 @@ const Homepage = () => {
       <Navbar />
       <div className="flex  items-center justify-center h-screen bg-gradient-to-r from-purple-500 to-pink-500">
         <div className="text-center">
-        <div className="flex items-center justify-center mx-auto">
-          <img
-            src="src\assets\images\Animation-PNG-HD.png"
-            alt="Workflow"
-            className="h-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 mx-auto animate-[slide-down_2s_ease-in-out]"
-          />
-          <div className="pl-4">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wide text-black">
-              Welcome to my homepage
-            </h1>
-            <p className="text-justify lg:px-20 lg:py-10 sm:text-lg md:text-xl text-black">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+          <div className="flex items-center justify-center mx-auto">
+            <img
+              src="src\assets\images\Animation-PNG-HD.png"
+              alt="Workflow"
+              className="h-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 mx-auto animate-[slide-down_2s_ease-in-out]"
+            />
+            <div className="pl-4">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wide text-black">
+                Hello, I am Vikas Singh
+              </h1>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-700 mt-2">
+                Welcome to my personal website! I am a passionate developer.
+              </h2>
+              <p className="text-justify lg:px-20 lg:py-10 sm:text-lg md:text-xl text-black">
+                Currently, I am working with Infoneo Technologies Private
+                Limited as a software developer. I specialize in creating
+                innovative solutions and have a strong passion for coding. With
+                a keen interest in the latest technologies, I continually strive
+                to improve and expand my skills. My goal is to deliver
+                high-quality software that meets the needs of users and
+                businesses alike. Welcome to my personal website where I share
+                my projects, experiences, and insights into the world of
+                technology. Here, you'll find a showcase of my work, including
+                web applications, mobile apps, and more. Let's connect and
+                explore the endless possibilities of technology together!
+              </p>
+            </div>
           </div>
-        </div>
 
           <div className="flex justify-center space-x-4 mt-6">
             <Link to={"/login"}>
@@ -47,7 +53,8 @@ const Homepage = () => {
               </button>
             </Link>
 
-            <Link to="https://github.com/vikaskumarsingh20"
+            <Link
+              to="https://github.com/vikaskumarsingh20"
               href="https://github.com/brixtol"
               target="_blank"
               rel="noopener noreferrer"
