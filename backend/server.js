@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const dbConnect = require('./config/database');
 const { signup } = require('./controllers/signup');
+const cors = require('cors');
  
 require('dotenv').config();
 
@@ -10,6 +11,12 @@ dbConnect();
 
 //middleware
 app.use(express.json());
+
+// CORS Configuration
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
 
 // Routes
 app.use('/api/v1', signup);
