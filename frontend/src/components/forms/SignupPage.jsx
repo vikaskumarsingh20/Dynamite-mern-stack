@@ -1,10 +1,52 @@
-// eslint-disable-next-line no-unused-vars
-import React from "react";
+
+import React, { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
 
 function FormTailwind() {
+ 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const getSignup = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `${process.env.VITE_REACT_APP_API_BASE_URL}/api/v1/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+            confirmPassword,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setError(null);
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(()  => {
+    getSignup();
+  },[]);
+   
+
   return (
     <>
       <Navbar />
@@ -30,7 +72,7 @@ function FormTailwind() {
           <input
             type="email"
             id="email"
-            className="text-gray-900 border border-gray-300 text-gray-900 text-sm rounded-lg
+            className="text-gray-900 border border-gray-300 text-sm rounded-lg
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
               dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
                dark:focus:border-blue-500"
@@ -48,7 +90,7 @@ function FormTailwind() {
           <input
             type="password"
             id="password"
-            className="text-gray-900 border border-gray-300 text-gray-900 text-sm rounded-lg
+            className="border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
               dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
                dark:focus:border-blue-500"
@@ -66,7 +108,7 @@ function FormTailwind() {
           <input
             type="password"
             id="repeat-password"
-            className="text-gray-900 border border-gray-300 text-gray-900 text-sm rounded-lg
+            className="border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
               dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
                dark:focus:border-blue-500"
@@ -96,7 +138,7 @@ function FormTailwind() {
         </div>
         <button
           type="submit"
-          className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+          className="w-full cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
            focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center
             dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >

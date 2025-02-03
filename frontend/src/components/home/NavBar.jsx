@@ -197,7 +197,7 @@ const Navbar = () => {
           className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
           href="#"
         >
-          Sign up
+          Sign Up
         </Link>
       </nav>
     </div>
