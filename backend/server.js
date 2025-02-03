@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const dbConnect = require('./config/database');
-const { signup } = require('./controllers/signup');
+const routes = require('./routes/route');
 const cors = require('cors');
  
 require('dotenv').config();
@@ -19,7 +19,7 @@ app.use(cors({
 }));
 
 // Routes
-app.use('/api/v1', signup);
+app.use('/api/v1', routes);
 
 // Default route
 app.get('/', (req, res) => {
