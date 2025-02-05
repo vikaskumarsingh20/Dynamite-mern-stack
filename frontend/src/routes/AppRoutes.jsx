@@ -8,6 +8,7 @@ import NotFoundPage from '../components/home/NotFoundPage';
 import ForgetPassword from '../components/forms/ForgetPassword';
 import NewPassword from '../components/forms/NewPassword';
 import Dashboard from '../components/home/admin/Dashboard';
+import ForLearning from '../components/forms/ForLearning';
 
 
 const AppRoutes = () => {
@@ -19,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/forgetpassword" element={<ForgetPassword />} />
       <Route path="/newpassword" element={<NewPassword />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/forlearning" element={<ForLearning />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
