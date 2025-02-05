@@ -12,9 +12,6 @@ dist
 dist-ssr
 *.local
 
-# Ignore specific file
-# frontend/src/components/forms/ForLearning.jsx
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
