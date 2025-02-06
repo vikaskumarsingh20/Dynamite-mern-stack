@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function FormTailwind() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
   const handleChange = (event) => {
     setDataFrom({
@@ -18,7 +21,7 @@ function FormTailwind() {
 
   const getSignup = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_REACT_APP_API_BASE_URL}/signup`,
@@ -54,6 +57,12 @@ function FormTailwind() {
   // }, []);
 
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const toggleRepeatPasswordVisibility = () => {
+    setShowRepeatPassword(!showRepeatPassword);
+  }
 
   return (
     <>
@@ -89,7 +98,7 @@ function FormTailwind() {
                 onClick={handleChange}
               />
             </div>
-            <div className="mb-5">
+            <div className="mb-5 relative">
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
@@ -97,7 +106,7 @@ function FormTailwind() {
                 Your password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 className="border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
@@ -107,8 +116,13 @@ function FormTailwind() {
                 required
                 onClick={handleChange}
               />
+              <div>
+                <button className="absolute right-2 mt-4 top-1/2 transform -translate-y-1/2" onClick={togglePasswordVisibility}>
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </button>
+              </div>
             </div>
-            <div className="mb-5">
+            <div className="mb-5 relative">
               <label
                 htmlFor="repeat-password"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
@@ -116,7 +130,7 @@ function FormTailwind() {
                 Repeat password
               </label>
               <input
-                type="password"
+                type={showRepeatPassword ? "text" : "password"}
                 id="repeat-password"
                 className="border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
@@ -126,24 +140,34 @@ function FormTailwind() {
                 required
                 onClick={handleChange}
               />
-            </div>
-            <div className="flex items-start mb-5">
-              <div className="flex items-center h-5">
-                <input
-                  id="remember"
-                  type="checkbox"
-                  className="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
-                />
+              <div>
+                <button className="absolute right-2 mt-4 top-1/2 transform -translate-y-1/2" onClick={toggleRepeatPasswordVisibility}>
+                  {showRepeatPassword ? <FaEye /> : <FaEyeSlash />}
+                </button>
               </div>
-              <span htmlFor="terms" className="ms-2 text-sm font-medium ">
-                I agree with the{" "}
+            </div>
+            <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center">
+              <input
+                id="remember"
+                type="checkbox"
+                className="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2"
+              />
+              <label
+                  htmlFor="remember"
+                  className=" block text-sm text-gray-900 dark:text-gray-400"
+                >
+                  I agree with the
+                </label>
+                </div>
+              <label>
                 <Link
-                  to="#"
+                  to="/terms-and-conditions"
                   className="text-blue-600 hover:underline dark:text-blue-500"
                 >
                   terms and conditions
                 </Link>
-              </span>
+              </label>
             </div>
             <button
               type="submit"

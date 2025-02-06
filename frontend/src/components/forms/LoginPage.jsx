@@ -1,11 +1,13 @@
 // eslint-disable-next-line no-unused-vars
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function LoginPage() {
   const [dataFrom, setDataFrom] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (event) => {
     setDataFrom({
@@ -39,7 +41,12 @@ function LoginPage() {
       console.log("error in getLogin:", error);
     }
   };
-  console.log("this is function",getLogin);
+  console.log("this is function", getLogin);
+
+  const togglePasswordVisiblity = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <Navbar />
@@ -51,9 +58,9 @@ function LoginPage() {
             alt="Workflow"
             className="h-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 "
           />
-          <form onSubmit={getLogin}  className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
+          <form onSubmit={getLogin} className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
             <h2 className="text-2xl font-bold text-gray-400 text-center mb-6 underline">
-              Login
+              Login Page
             </h2>
             <div className="mb-4">
               <label
@@ -74,7 +81,7 @@ function LoginPage() {
                 onClick={handleChange}
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 relative">
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
@@ -82,17 +89,23 @@ function LoginPage() {
                 Password
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 className="text-gray-900 border border-gray-300 text-gray-900 text-sm rounded-lg
-             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 
               dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
                dark:focus:border-blue-500"
                 placeholder="Enter your password"
                 required
                 onClick={handleChange}
               />
+              <div className="flex align-center justify-right">
+              <button className="absolute right-2 mt-4 top-1/2 transform -translate-y-1/2" onClick={togglePasswordVisiblity}>
+                {showPassword ? <FaEye /> : <FaEyeSlash /> }
+              </button>
+              </div>
             </div>
+
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center">
                 <input

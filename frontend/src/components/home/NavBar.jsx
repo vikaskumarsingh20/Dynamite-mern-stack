@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,12 +40,12 @@ const Navbar = () => {
             lg:static lg:flex lg:items-center lg:w-auto lg:space-x-6 lg:shadow-none lg:py-0 lg:px-80 z-50`
         }>
           <li>
-            <Link
+            <NavLink
               to={"/"}
               className="text-md hover:text-blue-600"
             >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li className="text-gray-300">
             <svg
@@ -64,9 +64,9 @@ const Navbar = () => {
             </svg>
           </li>
           <li>
-            <Link to={"/about-us"} className="text-md hover:text-blue-600">
+            <NavLink to={"/about-us"} className="text-md hover:text-blue-600">
               About Us
-            </Link>
+            </NavLink>
           </li>
           <li className="text-gray-300">
             <svg
@@ -85,7 +85,7 @@ const Navbar = () => {
             </svg>
           </li>
           <li>
-            <Link
+            <NavLink
               to={"/services"}
               className="text-sm   hover:text-gray-500"
             >
@@ -93,7 +93,7 @@ const Navbar = () => {
                 <button className="text-md hover:text-blue-600 flex items-center">
                   Services
                   <svg
-                    className="ml-1 w-4 h-4"
+                    className="ml-1 w-4 h-4 transition duration-150 ease-in-out transform group-hover:rotate-180"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -109,32 +109,32 @@ const Navbar = () => {
                 </button>
                 <ul className="absolute hidden  pt-1 group-hover:block">
                   <li>
-                    <Link
+                    <NavLink
                       to={"/service1"}
                       className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                     >
                       Application
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link
+                    <NavLink
                       to={"/service2"}
                       className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                     >
                       Developer
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link
+                    <NavLink
                       to={"/service3"}
                       className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                     >
                       Marketing
-                    </Link>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
-            </Link>
+            </NavLink>
           </li>
           <li className="text-gray-300">
             <svg
@@ -153,12 +153,12 @@ const Navbar = () => {
             </svg>
           </li>
           <li>
-            <Link
+            <NavLink
               to={"/pricing"}
               className="text-md hover:text-blue-600"
             >
               Pricing
-            </Link>
+            </NavLink>
           </li>
           <li className="text-gray-300">
             <svg
@@ -177,12 +177,12 @@ const Navbar = () => {
             </svg>
           </li>
           <li>
-            <Link
+            <NavLink
               to={"/contact"}
               className="text-md hover:text-blue-600"
             >
               Contact
-            </Link>
+            </NavLink>
           </li>
         </ul>
         <Link
