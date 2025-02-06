@@ -4,10 +4,18 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  }
 
   return (
     <div className="bg-blue-500">
@@ -185,20 +193,43 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-        <Link
-          to={"/login"}
-          className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-sm transition duration-200"
-          href="#"
-        >
-          Sign In
-        </Link>
-        <Link
-          to={"/signup"}
-          className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
-          href="#"
-        >
-          Sign Up
-        </Link>
+
+        <div>
+          {!isLoggedIn ? (
+            <>
+              <Link
+                to={"/login"}
+                className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
+              >
+                Sign In
+              </Link>
+              <Link
+                to={"/signup"}
+                className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
+              >
+                Sign Up
+              </Link>
+              <button onClick={handleLogin} className="hidden"></button>
+            </>
+          ) : (
+            <>
+              <Link
+                to={"/account"}
+                className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
+              >
+                Account
+              </Link>
+              <Link
+                to={"/logout"}
+                className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
+              >
+                Logout
+              </Link>
+              <button onClick={handleLogout} className="hidden"></button>
+            </>
+          )}
+        </div>
+
       </nav>
     </div>
   );
