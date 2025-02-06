@@ -14,7 +14,7 @@ router.post('/login',login);
 router.delete('/delete',deleteUser);
 
 // protected routes
-router.get('/test', auth, isUser, (req, res) => {
+router.get('/test', auth, (req, res) => {
     res.json({
         success: true,
         message: "Welcome to protected route for TEST"

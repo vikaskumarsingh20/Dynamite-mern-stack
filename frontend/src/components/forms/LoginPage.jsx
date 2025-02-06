@@ -4,6 +4,8 @@ import { data, Link } from "react-router-dom";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FcGoogle } from "react-icons/fc";
+
 
 function LoginPage() {
   const [dataFrom, setDataFrom] = useState({ email: "", password: "",remember:"" ,loading: false });
@@ -136,6 +138,18 @@ const handleSubmit = (event) => {
                 Sign up
               </Link>
             </p>
+            <div className="flex items-center justify-center mt-4">
+              <span className="mx-auto text-gray-600 dark:text-gray-400 bg-linear-210">or</span>
+            </div>
+            <div className="flex items-center justify-center mt-4 mb-6">
+              <button
+                type="button"
+                className="bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 py-2 px-4 rounded flex items-center space-x-2"
+              >
+                <FcGoogle className="text-gray-800 dark:text-gray-400" />
+                <span className="text-gray-800 dark:text-gray-400 cursor-pointer">Sign in with Google</span>
+              </button>
+            </div>
           </form>
         </div>
       </div>
