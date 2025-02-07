@@ -14,11 +14,11 @@ const Homepage = () => {
       <div className="flex  items-center justify-center h-screen bg-gradient-to-r from-purple-500 to-pink-500">
         <div className="text-center">
           <div className="flex items-center justify-center mx-auto">
-            <img
-              src="src\assets\images\Animation-PNG-HD.png"
-              alt="Workflow"
-              className="h-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 mx-auto animate-[slide-down_2s_ease-in-out]"
-            />
+          <img
+            src="src/assets/images/Animation-PNG-HD.png"
+            alt="Workflow"
+            className="hidden sm:block h-auto w-[17%] max-w-xs sm:max-w-sm md:max-w-md xl:max-w-xl 2xl:max-w-2xl"
+          />
             <div className="pl-4">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wide text-black">
                 Hello, I am Vikas Singh
@@ -26,7 +26,7 @@ const Homepage = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-700 mt-2">
                 Welcome to my personal website! I am a passionate developer.
               </h2>
-              <p className="text-justify lg:px-20 lg:py-10 sm:text-lg md:text-xl text-black">
+              <p className="text-justify px-4 py-6 sm:px-10 sm:py-8 lg:px-20 lg:py-10 text-base sm:text-lg md:text-xl text-black">
                 Currently, I am working with Infoneo Technologies Private
                 Limited as a software developer. I specialize in creating
                 innovative solutions and have a strong passion for coding. With

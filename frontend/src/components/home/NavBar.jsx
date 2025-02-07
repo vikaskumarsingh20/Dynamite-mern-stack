@@ -2,22 +2,21 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
+import { RxHamburgerMenu } from "react-icons/rx";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  let isLoggedIn = props.isLoggedIn;
+  let setIsLoggedIn = props.setIsLoggedIn;
+  let handleLogin = props.handleLogin;
+  let handleLogout = props.handleLogout;
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-  const notify = () => toast("Wow so easy!");
+ 
 
   return (
     <div className="bg-blue-500">
@@ -37,14 +36,15 @@ const Navbar = () => {
             className="navbar-burger flex items-center text-blue-600 p-3"
             onClick={toggleMenu}
           >
-            <svg
+            {/* <svg
               className="block h-4 w-4 fill-current"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <title>Mobile menu</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-            </svg>
+            </svg> */}
+            <RxHamburgerMenu className="hover:scale-130 duration-300 cursor-pointer" />
           </button>
         </div>
         <ul
@@ -187,24 +187,31 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-
+            {/* toggle button */}
         <div>
           {!isLoggedIn ? (
             <>
               <Link
                 to={"/login"}
-                className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
+                className=" hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
               >
-                Sign In
+                <button onClick={handleLogin}>
+                  Sign In
+                </button>
+
+
               </Link>
               <Link
                 to={"/signup"}
-                className=" lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
+                className=" hidden  lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
               >
-                Sign Up
+                <button>
+                  Sign Up
+                </button>
+
               </Link>
 
-              <button onClick={handleLogin} className=""></button>
+              
             </>
           ) : (
             <>
@@ -212,15 +219,21 @@ const Navbar = () => {
                 to={"/account"}
                 className=" lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
               >
-                Account
+                <button>
+                  Account
+                </button>
+
               </Link>
               <Link
-                to={"/logout"}
-                className=" lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
+                to={"/"}
+                className="lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
               >
-                Logout
+                <button onClick={handleLogout}>
+                  Logout
+                </button>
+
               </Link>
-              <button onClick={handleLogout} className="hidden"></button>
+              
             </>
           )}
         </div>

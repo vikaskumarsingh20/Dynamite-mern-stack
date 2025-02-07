@@ -70,10 +70,10 @@ function FormTailwind() {
 
       <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500">
         <div className=" flex items-center justify-center mx-auto">
-          <img
-            src="src\assets\images\Animation-PNG-HD.png"
+        <img
+            src="src/assets/images/Animation-PNG-HD.png"
             alt="Workflow"
-            className="h-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 "
+            className="hidden sm:block h-auto w-[25%] max-w-xs sm:max-w-sm md:max-w-md xl:max-w-xl 2xl:max-w-2xl"
           />
           <form onClick={getSignup} className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
             <h2 className="text-2xl font-bold text-gray-400 text-center mb-6 underline">

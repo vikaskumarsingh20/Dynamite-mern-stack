@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
+import NavbarToggler from "../Demo/NavbarToggle";
 
 function ForLearning() {
     const [dataFrom, setDataFrom] = useState({
@@ -347,8 +348,10 @@ function ForLearning() {
                 </div>
 
             </form>
+            <NavbarToggler />
         </div>
         <Footer />
+
         </>
     );
 }

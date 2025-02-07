@@ -5,11 +5,13 @@ import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 
 function LoginPage() {
   const [dataFrom, setDataFrom] = useState({ email: "", password: "",remember:"" ,loading: false });
   const [showPassword, setShowPassword] = useState(false);
+   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -31,17 +33,26 @@ const handleSubmit = (event) => {
   const togglePasswordVisiblity = () => {
     setShowPassword(!showPassword);
   };
+  
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    toast.success('Logged in successfully');
+  };
+    const handleLogout = () => {
+      setIsLoggedIn(false);
+      toast.error('Logged out');
+    };
 
   return (
     <>
-      <Navbar />
+      <Navbar handleLogin={handleLogin} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} handleLogout={handleLogout} />
 
-      <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500">
+      <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500 sm:flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row">
         <div className=" flex items-center justify-center mx-auto">
           <img
-            src="src\assets\images\Animation-PNG-HD.png"
+            src="src/assets/images/Animation-PNG-HD.png"
             alt="Workflow"
-            className="h-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 "
+            className="hidden sm:block h-auto w-[25%] max-w-xs sm:max-w-sm md:max-w-md xl:max-w-xl 2xl:max-w-2xl"
           />
           <form onSubmit={handleSubmit}  className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
             <h2 className="text-2xl font-bold text-gray-400 text-center mb-6 underline">
@@ -58,7 +69,7 @@ const handleSubmit = (event) => {
                 type="email"
                 id="email"
                 name="email"
-                className="text-gray-900 border border-gray-300 text-gray-900 text-sm rounded-lg
+                className="text-gray-900 border border-gray-300 text-sm rounded-lg
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
               dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
                dark:focus:border-blue-500"
@@ -79,7 +90,7 @@ const handleSubmit = (event) => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
-                className="text-gray-900 border border-gray-300 text-gray-900 text-sm rounded-lg
+                className="text-gray-900 border border-gray-300   text-sm rounded-lg
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 
               dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
                dark:focus:border-blue-500"
@@ -125,6 +136,7 @@ const handleSubmit = (event) => {
                 className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 
                 px-4 rounded focus:outline-none focus:shadow-outline"
                 disabled={dataFrom.loading}
+                onClick={handleLogin}
               >
                 {dataFrom.loading ? "Loading..." : " Sign In"}
               </button>
@@ -144,7 +156,8 @@ const handleSubmit = (event) => {
             <div className="flex items-center justify-center mt-4 mb-6">
               <button
                 type="button"
-                className="bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 py-2 px-4 rounded flex items-center space-x-2"
+                className="bg-white hover:bg-gray-100 focus:outline-none focus:ring-2
+                 focus:ring-offset-2 focus:ring-gray-600 py-2 px-4 rounded flex items-center space-x-2"
               >
                 <FcGoogle className="text-gray-800 dark:text-gray-400" />
                 <span className="text-gray-800 dark:text-gray-400 cursor-pointer">Sign in with Google</span>
