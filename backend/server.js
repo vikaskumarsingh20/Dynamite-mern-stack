@@ -3,6 +3,7 @@ const app = express();
 const dbConnect = require('./config/database');
 const routes = require('./routes/route');
 const cors = require('cors');
+const cookiesParser = require('cookie-parser');
  
 require('dotenv').config();
 
@@ -11,6 +12,8 @@ dbConnect();
 
 //middleware
 app.use(express.json());
+
+app.use(cookiesParser());
 
 // CORS Configuration
 app.use(cors({

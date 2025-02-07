@@ -4,10 +4,14 @@ require("dotenv").config();
 
 exports.auth = async (req, res, next) => {
   try {
+    console.log("req.cookies", req.cookies);
+    console.log("req.body", req.body);
+    console.log("req.header", req.header("Authorization"));
     const token =
       req.cookies.token ||
       req.body.token ||
       req.header("Authorization").replace("Bearer ", "");
+
 
     if (!token) {
       return res.status(401).json({ success: false, message: `Token Missing` });
@@ -34,7 +38,7 @@ exports.isUser = async (req, res, next) => {
   try {
 		const userDetails = await User.findOne({ email: req.user.email });
 
-		if (userDetails.role !== "user") {
+		if (userDetails.role !== "User") {
 			return res.status(401).json({
 				success: false,
 				message: "This is a Protected Route for user",
@@ -52,7 +56,7 @@ exports.isAdmin = async (req, res, next) => {
   try {
 		const userDetails = await User.findOne({ email: req.user.email });
 
-		if (userDetails.role !== "admin") {
+		if (userDetails.role !== "Admin") {
 			return res.status(401).json({
 				success: false,
 				message: "This is a Protected Route for Admin",
