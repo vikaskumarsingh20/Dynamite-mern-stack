@@ -9,6 +9,7 @@ import ForgetPassword from '../components/forms/ForgetPassword';
 import NewPassword from '../components/forms/NewPassword';
 import Dashboard from '../components/home/admin/Dashboard';
 import ForLearning from '../components/forms/ForLearning';
+import Aboutus from '../components/pages/Aboutus';
 
 
 const AppRoutes = () => {
@@ -19,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/forgetpassword" element={<ForgetPassword />} />
       <Route path="/newpassword" element={<NewPassword />} />
+      <Route path='/about-us' element={<Aboutus />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/forlearning" element={<ForLearning />} />
       <Route path="*" element={<NotFoundPage />} />

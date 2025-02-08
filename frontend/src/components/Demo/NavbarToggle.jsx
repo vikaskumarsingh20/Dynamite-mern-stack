@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UserList from "./UserList";
 
 const LogicComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -56,6 +57,13 @@ const LogicComponent = () => {
       </div>
 
       <ToastContainer />
+
+      <h2 className="text-4xl font-bold text-center mt-4 mb-4">
+        This is custom hook demo
+      </h2>
+      <div className="bg-white p-4 rounded-md shadow-lg">
+        <UserList />
+      </div>
     </div>
   );
 };
