@@ -1,10 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
 
 const Aboutus = () => {
+
+  const[loading, setLoading] = useState(true);
   return (
     <>
       <Navbar />
@@ -17,11 +19,19 @@ const Aboutus = () => {
             high-quality and user-friendly applications.
           </p>
           <div className="flex flex-col items-center justify-center mt-12">
-            <img
-              src="https://picsum.photos/200/300"
-              alt="Our Team"
-              className="rounded-full w-48 h-48 object-cover"
-            />
+            <div className="w-48 h-48 flex items-center justify-center">
+              <img
+                src="https://picsum.photos/200/300"
+                alt="Our Team"
+                className="rounded-full w-48 h-48 object-cover"
+                onLoad={() => setLoading(false)}
+                onError={() => setLoading(false)}
+                style={{ display: loading ? 'none' : 'block' }}
+              />
+              {loading && (
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+              )}
+            </div>
             <h2 className="text-4xl font-bold mt-4">John Doe</h2>
             <p className="text-xl">
               John is a full-stack developer with over 10 years of experience.
@@ -30,11 +40,19 @@ const Aboutus = () => {
             </p>
           </div>
           <div className="flex flex-col items-center justify-center mt-12">
-            <img
-              src="https://picsum.photos/201/301"
-              alt="Our Team"
-              className="rounded-full w-48 h-48 object-cover"
-            />
+            <div className="w-48 h-48 flex items-center justify-center">
+              <img
+                src="https://picsum.photos/201/301"
+                alt="Our Team"
+                className="rounded-full w-48 h-48 object-cover"
+                onLoad={() => setLoading(false)}
+                onError={() => setLoading(false)}
+                style={{ display: loading ? 'none' : 'block' }}
+              />
+              {loading && (
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+              )}
+            </div>
             <h2 className="text-4xl font-bold mt-4">Jane Doe</h2>
             <p className="text-xl">
               Jane is a UX/UI designer with over 5 years of experience. She is
@@ -43,11 +61,19 @@ const Aboutus = () => {
             </p>
           </div>
           <div className="flex flex-col items-center justify-center mt-12">
-            <img
-              src="https://picsum.photos/202/302"
-              alt="Our Team"
-              className="rounded-full w-48 h-48 object-cover"
-            />
+            <div className="w-48 h-48 flex items-center justify-center">
+              <img
+                src="https://picsum.photos/202/302"
+                alt="Our Team"
+                className="rounded-full w-48 h-48 object-cover"
+                onLoad={() => setLoading(false)}
+                onError={() => setLoading(false)}
+                style={{ display: loading ? 'none' : 'block' }}
+              />
+              {loading && (
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+              )}
+            </div>
             <h2 className="text-4xl font-bold mt-4">Bob Smith</h2>
             <p className="text-xl">
               Bob is a DevOps engineer with over 5 years of experience. He is

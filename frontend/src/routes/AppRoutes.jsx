@@ -10,6 +10,7 @@ import NewPassword from '../components/forms/NewPassword';
 import Dashboard from '../components/home/admin/Dashboard';
 import ForLearning from '../components/forms/ForLearning';
 import Aboutus from '../components/pages/Aboutus';
+import Blogs from '../components/pages/blog/Blogs';
 import PrivateRoute from './PrivateRoute';
 
 
@@ -22,6 +23,7 @@ const AppRoutes = () => {
       <Route path="/forgetpassword" element={<ForgetPassword />} />
       <Route path="/newpassword" element={<NewPassword />} />
       <Route path='/about-us' element={<Aboutus />} />
+      <Route path='/blogs' element={<Blogs />} />
       <Route
         path="/dashboard"
         element={

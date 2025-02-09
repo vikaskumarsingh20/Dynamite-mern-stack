@@ -161,8 +161,8 @@ const Navbar = (props) => {
             </svg>
           </li>
           <li>
-            <NavLink to={"/pricing"} className="text-md hover:text-blue-600">
-              Pricing
+            <NavLink to={"/blogs"} className="text-md hover:text-blue-600">
+             Blogs
             </NavLink>
           </li>
           <li className="text-gray-300">
