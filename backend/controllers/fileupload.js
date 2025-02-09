@@ -40,9 +40,11 @@ exports.uploadFile = async (req, res) => {
     }
 }
 
+
 exports.localFileUpload = async (req, res) => {
     try {
         const file = req.files.file;
+        console.log(file);
         const fileExtension = path.extname(file.name).toLowerCase();
         if (fileExtension !== '.jpg' && fileExtension !== '.png' && fileExtension !== '.jpeg') {
             return res.status(400).json({
@@ -51,7 +53,8 @@ exports.localFileUpload = async (req, res) => {
                 error: "Invalid file format"
             });
         }
-        const filePath = path.join(__dirname, '../files', Date.now() + '-' + file.name);
+        const filePath = path.join(__dirname, 'files', `${file.name}`);
+        console.log(filePath);
         file.mv(filePath, (err) => {
             if (err) {
                 console.log(err);
@@ -61,30 +64,63 @@ exports.localFileUpload = async (req, res) => {
                     error: err.message
                 });
             }
-            const newFile = new File({
-                name: file.name,
-                imageUrl: filePath,
-                tags: req.body.tags,
-                email: req.body.email
-            });
-            newFile.save((err, file) => {
-                if (err) {
-                    console.log(err);
-                    return res.status(500).json({
-                        success: false,
-                        message: "Failed to save file in database",
-                        error: err.message
-                    });
-                }
-                res.status(200).json({
-                    success: true,
-                    message: "File uploaded successfully",
-                    file: file
-                });
+            return res.status(200).json({
+                success: true,
+                message: "uploaded successfully"
             });
         });
     } catch (error) {
         console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to upload file",
+            error: error.message
+        });
+    }
+}
+
+exports.imageUploadClodinary = async (req, res) => {
+    try {
+        const file = req.file;
+        if (!file) {
+            return res.status(400).json({
+                success: false,
+                message: "No file uploaded"
+            });
+        }
+
+        const fileExtension = path.extname(file.originalname).toLowerCase();
+        if (fileExtension !== '.jpg' && fileExtension !== '.png' && fileExtension !== '.jpeg') {
+            return res.status(400).json({
+                success: false,
+                message: "Only .jpg, .png and .jpeg file formats are allowed",
+                error: "Invalid file format"
+            });
+        }
+
+        const imageBuffer = file.buffer;
+        const uploadResult = await cloudinary.uploader.upload_stream({ folder: 'files' }, (error, result) => {
+            if (error) {
+                throw new Error('Cloudinary upload error');
+            }
+            return result;
+        }).end(imageBuffer);
+
+        const newFile = new File({
+            name: file.originalname,
+            imageUrl: uploadResult.secure_url,
+            tags: req.body.tags,
+            email: req.body.email
+        });
+        await newFile.save();
+
+        res.status(200).json({
+            success: true,
+            message: "File uploaded successfully",
+            file: newFile
+        });
+    } catch (error) {
+        console.error(error);
         res.status(500).json({
             success: false,
             message: "Failed to upload file",
