@@ -82,6 +82,7 @@ exports.localFileUpload = async (req, res) => {
 exports.imageUploadClodinary = async (req, res) => {
     try {
         const file = req.file;
+        console.log(file);
         if (!file) {
             return res.status(400).json({
                 success: false,

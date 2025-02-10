@@ -1,15 +1,19 @@
-import React from "react";
+// eslint-disable-next-line no-unused-vars
+import React, { useContext } from "react";
 import Navbar from "../../home/NavBar";
 import Footer from "../../home/Footer";
+import { ThemeContext } from "../../../contexts/Theme";
 
 function Blogs() {
+  const{darkMode} = useContext(ThemeContext)
   return (
     <>
       <Navbar />
-      <div className="container mx-auto p-4">
+      {/* <div className="container mx-auto p-4"> */}
+      <div  className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} container mx-auto p-4`}>
         <div className="space-y-4">
-          <div className="border-b-2 border-b-gray-300 drop-shadow-md bg-white">
-            <header className="py-4 border-b-2 border-b-gray-300 drop-shadow-md  bg-white">
+          <div className="border-b-2 border-b-gray-300 drop-shadow-md bg-gray-200">
+            <header className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200'} py-4 border-b-2 border-b-gray-300 drop-shadow-md`}>
               <h1 className="flex flex-col items-center text-3xl font-bold uppercase text-center">
                 Blogs <small className="text-sm font-normal">(Page using Context API)</small>
               </h1>
@@ -53,15 +57,21 @@ function Blogs() {
             </div>
           ))}
           {/* pagination */}
-          <div className="  inset-x-0 bg-white py-2 border-t-2 border-t-gray-300">
+          <div
+            className={`  inset-x-0 ${darkMode ? 'bg-gray-800' : 'bg-white-200'} py-2 border-t-2 border-t-gray-300`}
+          >
             <div className="flex items-center gap-x-3 w-11/12 max-w-2xl mx-auto">
-              <button className="border-2 border-gray-300 py-1 px-4 rounded-md cursor-pointer">
+              <button
+                className={`border-2 border-gray-300 py-1 px-4 rounded-md cursor-pointer ${darkMode ? 'text-white' : 'text-black'}`}
+              >
                 Previous
               </button>
-              <button className="border-2 border-gray-300 py-1 px-4 rounded-md cursor-pointer">
+              <button
+                className={`border-2 border-gray-300 py-1 px-4 rounded-md cursor-pointer ${darkMode ? 'text-white' : 'text-black'}`}
+              >
                 Next
               </button>
-              <p className="text-sm font-semibold ml-auto">Page 4 of 6</p>
+              <p className={`text-sm font-semibold ml-auto ${darkMode ? 'text-white' : 'text-black'}`}>Page 4 of 6</p>
             </div>
           </div>
         </div>

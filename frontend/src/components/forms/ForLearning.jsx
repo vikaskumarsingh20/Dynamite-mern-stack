@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
 import NavbarToggler from "../Demo/NavbarToggle";
+import { ThemeContext } from "../../contexts/Theme";
 
 function ForLearning() {
     const [dataFrom, setDataFrom] = useState({
@@ -11,6 +12,7 @@ function ForLearning() {
         gender: "", age: "", emailNotifications: "", pushNotifications: "",
         loading: false
     });
+  const{darkMode} = useContext(ThemeContext);
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
@@ -33,8 +35,9 @@ function ForLearning() {
         <>
             <Navbar />
 
-        <div className="container mx-auto px-4 py-8 md:px-6 lg:px-8">
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8 md:p-12 lg:p-16">
+        {/* <div className="container mx-auto px-4 py-8 md:px-6 lg:px-8"> */}
+        <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}container mx-auto px-4 py-8 md:px-6 lg:px-8`}>
+            <form onSubmit={handleSubmit} className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} rounded-lg shadow-lg p-8 md:p-12 lg:p-16`}>
                 <h2 className="lg:text-3xl sm:text-2xl text-center font-bold mb-4">
                     FOR LEARNING FORM
                 </h2>

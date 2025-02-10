@@ -1,61 +1,83 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { data, Link } from "react-router-dom";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
-
+import { ThemeContext } from "../../contexts/Theme";
 
 function LoginPage() {
-  const [dataFrom, setDataFrom] = useState({ email: "", password: "",remember:"" ,loading: false });
+  const [dataFrom, setDataFrom] = useState({
+    email: "",
+    password: "",
+    remember: "",
+    loading: false,
+  });
   const [showPassword, setShowPassword] = useState(false);
-   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { darkMode } = useContext(ThemeContext);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     setDataFrom((prevState) => ({
-        ...prevState,
-        [name]: type === "checkbox" || type === "radio" ? checked : value
+      ...prevState,
+      [name]: type === "checkbox" || type === "radio" ? checked : value,
     }));
-};
+  };
 
-const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     setDataFrom((prevState) => ({ ...prevState, loading: true }));
     console.log(dataFrom);
     setTimeout(() => {
-        setDataFrom((prevState) => ({ ...prevState, loading: false }));
+      setDataFrom((prevState) => ({ ...prevState, loading: false }));
     }, 2000);
-};
+  };
 
   const togglePasswordVisiblity = () => {
     setShowPassword(!showPassword);
   };
-  
+
   const handleLogin = () => {
     setIsLoggedIn(true);
-    toast.success('Logged in successfully');
+    toast.success("Logged in successfully");
   };
-    const handleLogout = () => {
-      setIsLoggedIn(false);
-      toast.error('Logged out');
-    };
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    toast.error("Logged out");
+  };
 
   return (
     <>
-      <Navbar handleLogin={handleLogin} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} handleLogout={handleLogout} />
+      <Navbar
+        handleLogin={handleLogin}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        handleLogout={handleLogout}
+      />
 
-      <div className="flex justify-center items-center min-h-screen bg-gray-100 light:bg-gray-900 bg-gradient-to-r from-purple-500 to-pink-500 sm:flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row">
+      <div
+        className={`${
+          darkMode ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
+        } 
+        flex justify-center items-center min-h-screen sm:flex-col md:flex-row lg:flex-row
+        xl:flex-row 2xl:flex-row`}
+      >
         <div className=" flex items-center justify-center mx-auto">
           <img
             src="src/assets/images/Animation-PNG-HD.png"
             alt="Workflow"
             className="hidden sm:block h-auto w-[25%] max-w-xs sm:max-w-sm md:max-w-md xl:max-w-xl 2xl:max-w-2xl"
           />
-          <form onSubmit={handleSubmit}  className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full">
-            <h2 className="text-2xl font-bold text-gray-400 text-center mb-6 underline">
+          <form
+            onSubmit={handleSubmit}
+            className={`${
+              darkMode ? "bg-gray-700 text-white" : "bg-white text-gray-800"
+            } shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 max-w-md w-full`}
+          >
+            <h2 className="text-2xl font-bold text-center mb-6 underline">
               Login Page
             </h2>
             <div className="mb-4">
@@ -69,10 +91,13 @@ const handleSubmit = (event) => {
                 type="email"
                 id="email"
                 name="email"
-                className="text-gray-900 border border-gray-300 text-sm rounded-lg
-             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
-              dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
-               dark:focus:border-blue-500"
+                className={`text-gray-900 border border-gray-300 text-sm rounded-lg
+                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                ${
+                  darkMode
+                    ? "dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:text-white dark:focus:border-blue-500"
+                    : ""
+                }`}
                 placeholder="Enter your email"
                 required
                 onChange={handleChange}
@@ -90,19 +115,24 @@ const handleSubmit = (event) => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
-                className="text-gray-900 border border-gray-300   text-sm rounded-lg
-             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 
-              dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500
-               dark:focus:border-blue-500"
-                placeholder="Enter your password"
+                className={`text-gray-900 border border-gray-300 text-sm rounded-lg
+                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                ${
+                  darkMode
+                    ? "dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:text-white dark:focus:border-blue-500"
+                    : ""
+                }`}
                 required
                 onChange={handleChange}
                 value={dataFrom.password}
               />
               <div className="flex align-center justify-right">
-              <button className="absolute right-2 mt-4 top-1/2 transform -translate-y-1/2" onClick={togglePasswordVisiblity}>
-                {showPassword ? <FaEye /> : <FaEyeSlash /> }
-              </button>
+                <button
+                  className="absolute right-2 mt-4 top-1/2 transform -translate-y-1/2"
+                  onClick={togglePasswordVisiblity}
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </button>
               </div>
             </div>
 
@@ -151,7 +181,9 @@ const handleSubmit = (event) => {
               </Link>
             </p>
             <div className="flex items-center justify-center mt-4">
-              <span className="mx-auto text-gray-600 dark:text-gray-400 bg-linear-210">or</span>
+              <span className="mx-auto text-gray-600 dark:text-gray-400 bg-linear-210">
+                or
+              </span>
             </div>
             <div className="flex items-center justify-center mt-4 mb-6">
               <button
@@ -160,7 +192,9 @@ const handleSubmit = (event) => {
                  focus:ring-offset-2 focus:ring-gray-600 py-2 px-4 rounded flex items-center space-x-2"
               >
                 <FcGoogle className="text-gray-800 dark:text-gray-400" />
-                <span className="text-gray-800 dark:text-gray-400 cursor-pointer">Sign in with Google</span>
+                <span className="text-gray-800 dark:text-gray-400 cursor-pointer">
+                  Sign in with Google
+                </span>
               </button>
             </div>
           </form>

@@ -2,26 +2,16 @@
 import React,{useEffect} from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from './routes/AppRoutes';
-import { api } from './services/api';
+import { ThemeProvider } from './contexts/Theme';
 
 function App() {
-  const fetchData = async () => {
-    try {
-      const response = await api.get('/api/data');
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
-    <Router>
-      <AppRoutes />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </ThemeProvider>
   );
 }
 

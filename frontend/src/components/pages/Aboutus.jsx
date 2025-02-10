@@ -1,17 +1,19 @@
-import React,{useState} from "react";
+import React,{useContext, useState} from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
+import { ThemeContext } from "../../contexts/Theme";
 
 const Aboutus = () => {
 
   const[loading, setLoading] = useState(true);
+  const{darkMode} = useContext(ThemeContext)
   return (
     <>
       <Navbar />
 
-      <div className="bg-gray-100">
+      <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} py-4 md:py-8 lg:py-4`}>
         <div className="container mx-auto p-4">
           <h1 className="text-6xl font-bold text-center">About Us</h1>
           <p className="text-2xl text-center">

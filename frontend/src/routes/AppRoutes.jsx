@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import LoginPage from '../components/forms/LoginPage';
 import SignupPage from '../components/forms/SignupPage';
 import Homepage from '../components/home/Homepage';
@@ -24,14 +24,17 @@ const AppRoutes = () => {
       <Route path="/newpassword" element={<NewPassword />} />
       <Route path='/about-us' element={<Aboutus />} />
       <Route path='/blogs' element={<Blogs />} />
-      <Route
-        path="/dashboard"
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      />
+      <Route path="/dashboard" element={<Outlet />}>
+        <Route
+          index
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        
+      </Route>
       <Route path="/forlearning" element={<ForLearning />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
