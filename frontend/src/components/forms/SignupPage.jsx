@@ -1,9 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useContext,  useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ThemeContext } from "../../contexts/Theme";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function FormTailwind() {
   const [dataFrom, setDataFrom] = useState({
@@ -16,6 +18,8 @@ function FormTailwind() {
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const { darkMode } = useContext(ThemeContext);
+  const {signup} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -24,16 +28,24 @@ function FormTailwind() {
       [name]: type === "checkbox" || type === "radio" ? checked : value,
     }));
   };
-
+  const handleSignup = async (event) => {
+    event.preventDefault();
+    signup();
+    navigate('/');
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     setDataFrom((prevState) => ({ ...prevState, loading: true }));
     console.log(dataFrom);
-    setTimeout(() => {
-      setDataFrom((prevState) => ({ ...prevState, loading: false }));
-    }, 2000);
-  };
+    const success = signup(dataFrom.email, dataFrom.password, dataFrom.repeatPassword);
 
+    if (success) {
+      navigate("/"); 
+    } else {
+      setDataFrom((prevState) => ({ ...prevState, loading: false }));
+      setError("Signup failed. Please check your details.");
+    }
+  };
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -184,7 +196,7 @@ function FormTailwind() {
               className="w-full cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
            focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center
             dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            onClick={ handleChange}
+            onClick={ handleSignup}
             >
               {dataFrom.loading ? "Loading..." : "Register new account"}
             </button>

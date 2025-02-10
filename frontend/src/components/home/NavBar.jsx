@@ -7,12 +7,10 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoSunny, IoSunnyOutline } from "react-icons/io5";
 import { ThemeContext } from "../../contexts/Theme";
 import { BsUnity } from "react-icons/bs";
+import { AuthContext } from "../../contexts/AuthContext";
 
-const Navbar = (props) => {
-  let isLoggedIn = props.isLoggedIn;
-  let setIsLoggedIn = props.setIsLoggedIn;
-  let handleLogin = props.handleLogin;
-  let handleLogout = props.handleLogout;
+const Navbar = () => {
+  const { isLoggedIn, logout } = useContext(AuthContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -20,6 +18,10 @@ const Navbar = (props) => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -46,8 +48,8 @@ const Navbar = (props) => {
           absolute top-full left-0 right-0 shadow-lg py-3 px-4 
           ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"}
           lg:static lg:flex lg:items-center lg:w-auto lg:space-x-5 lg:shadow-none lg:py-0 lg:px-80 z-50
-          `}>
-
+          `}
+        >
           <li>
             <NavLink to={"/"} className="text-md hover:text-blue-600">
               Home
@@ -181,8 +183,11 @@ const Navbar = (props) => {
               Contact
             </NavLink>
           </li>
-          <li onClick={toggleDarkMode} className="cursor-pointer flex align-center gap-3 justify-between">
-          <svg
+          <li
+            onClick={toggleDarkMode}
+            className="cursor-pointer flex align-center gap-3 justify-between"
+          >
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -197,13 +202,12 @@ const Navbar = (props) => {
               />
             </svg>
             <div>
-            {darkMode ? (
-              <IoSunny className="w-5 h-5" />
-            ) : (
-              <IoSunnyOutline className="w-5 h-5" />
-            )}
+              {darkMode ? (
+                <IoSunny className="w-5 h-5" />
+              ) : (
+                <IoSunnyOutline className="w-5 h-5" />
+              )}
             </div>
-
           </li>
         </ul>
         {/* toggle button */}
@@ -212,13 +216,13 @@ const Navbar = (props) => {
             <>
               <Link
                 to={"/login"}
-                className=" hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
+                className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
               >
-                <button onClick={handleLogin}>Sign In</button>
+                <button>Sign In</button>
               </Link>
               <Link
                 to={"/signup"}
-                className=" hidden  lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
+                className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
               >
                 <button>Sign Up</button>
               </Link>

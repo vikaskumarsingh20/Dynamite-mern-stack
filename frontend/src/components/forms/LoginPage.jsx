@@ -1,12 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext, useState } from "react";
-import { data, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { ThemeContext } from "../../contexts/Theme";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function LoginPage() {
   const [dataFrom, setDataFrom] = useState({
@@ -16,8 +17,24 @@ function LoginPage() {
     loading: false,
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { darkMode } = useContext(ThemeContext);
+  const { login,loginWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      await loginWithGoogle();
+      navigate("/");
+    } catch (error) {
+      console.error("Google Sign-In Error:", error);
+    }
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    login();
+    navigate('/');
+  };
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -40,23 +57,10 @@ function LoginPage() {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    toast.success("Logged in successfully");
-  };
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    toast.error("Logged out");
-  };
 
   return (
     <>
-      <Navbar
-        handleLogin={handleLogin}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        handleLogout={handleLogout}
-      />
+      <Navbar />
 
       <div
         className={`${
@@ -166,11 +170,14 @@ function LoginPage() {
                 type="submit"
                 className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 
                 px-4 rounded focus:outline-none focus:shadow-outline"
-                disabled={dataFrom.loading}
+                disabled={
+                  dataFrom.email === "" || dataFrom.password === "" || dataFrom.loading
+                }
                 onClick={handleLogin}
               >
                 {dataFrom.loading ? "Loading..." : " Sign In"}
               </button>
+              
             </div>
             <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-4">
               Do not have an account?{" "}
@@ -191,6 +198,8 @@ function LoginPage() {
                 type="button"
                 className="bg-white hover:bg-gray-100 focus:outline-none focus:ring-2
                  focus:ring-offset-2 focus:ring-gray-600 py-2 px-4 rounded flex items-center space-x-2"
+                  onClick={handleLoginWithGoogle}
+
               >
                 <FcGoogle className="text-gray-800 dark:text-gray-400" />
                 <span className="text-gray-800 dark:text-gray-400 cursor-pointer">
