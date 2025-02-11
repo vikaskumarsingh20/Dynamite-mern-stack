@@ -29,9 +29,9 @@ function Profile() {
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
               <button
-                data-drawer-target="logo-sidebar"
-                data-drawer-toggle="logo-sidebar"
-                aria-controls="logo-sidebar"
+                // data-drawer-target="logo-sidebar"
+                // data-drawer-toggle="logo-sidebar"
+                // aria-controls="logo-sidebar"
                 type="button"
                 className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 
                 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -60,7 +60,7 @@ function Profile() {
                   alt="FlowBite Logo"
                 />
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                  Flowbite
+                  Dynamite
                 </span>
               </Link>
             </div>
@@ -72,7 +72,7 @@ function Profile() {
                     type="button"
                     className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     aria-expanded="false"
-                    data-dropdown-toggle="dropdown-user"
+                    // data-dropdown-toggle="dropdown-user"
                     onClick={handleShowDetails}
                   >
                     <span className="sr-only">Open user menu</span>
@@ -150,13 +150,13 @@ function Profile() {
         </div>
       </nav>
     {/* /* aside bar */ }
-        <aside
+        <div
           id="logo-sidebar"
           className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-          aria-label="Sidebar"
+        //   aria-label="Sidebar"
         >
-          <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
-          <ul className={`  space-y-2 font-medium`}>
+          <div className=" z-50 h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+          <ul className={`${isMenuOpen ? "block" : ""} absolute space-y-2 font-medium`}>
             <li>
               <Link to={"/"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -286,7 +286,7 @@ function Profile() {
             </li>
             </ul>
           </div>
-        </aside>
+        </div>
         {/* content div */}
       <div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
