@@ -230,8 +230,12 @@ const Navbar = () => {
           ) : (
             <>
               <Link
-                to={"/account"}
+                to={"/profile"}
                 className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open("/profile", "_blank");
+                }}
               >
                 <button>Account</button>
               </Link>
