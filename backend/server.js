@@ -29,7 +29,10 @@ app.use(
 );
 
 // File Upload
-app.use(fileupload());
+app.use(fileupload({
+  useTempFiles : true,
+  tempFileDir : '/Images/'
+}));
 
 // Routes
 app.use("/api/v1", routes);

@@ -7,15 +7,12 @@ const fileSchema = new mongoose.Schema({
     },
     imageUrl: {
         type: String,
-        required: true
     },
     tags: {
         type: String,
-        required: true
     },
     email: {
         type: String,
-        required: true
     }
 });
 
