@@ -13,8 +13,8 @@ require("dotenv").config();
 // Connect to MongoDB
 dbConnect();
 
-// Connect to Cloudinary
-cloudinaryConnect();
+// Connect to Cloudinary 
+cloudinaryConnect();  
 //middleware
 app.use(express.json());
 
@@ -31,7 +31,7 @@ app.use(
 // File Upload
 app.use(fileupload({
   useTempFiles : true,
-  tempFileDir : '/Images/'
+  tempFileDir : '/tmp/'
 }));
 
 // Routes

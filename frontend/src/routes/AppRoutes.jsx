@@ -14,6 +14,8 @@ import Blogs from "../components/pages/blog/Blogs";
 import PrivateRoute from "./PrivateRoute";
 import { AuthContext } from "../contexts/AuthContext";
 import Profile from "../components/pages/Profile";
+import Account from "../components/pages/Account";
+import EditProfile from "../components/pages/EditProfile";
 
 const AppRoutes = () => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -24,7 +26,8 @@ const AppRoutes = () => {
         path="/login"
         element={isLoggedIn ? <Navigate to="/" replace /> : <LoginPage />}
       />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/account" element={<Account />} />
+      <Route path="/account/edit-profile" element={<EditProfile />} />
       <Route
         path="/signup"
         element={isLoggedIn ? <Navigate to="/" replace /> : <SignupPage />}

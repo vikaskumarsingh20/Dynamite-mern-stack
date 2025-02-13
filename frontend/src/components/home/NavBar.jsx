@@ -34,7 +34,7 @@ const Navbar = () => {
         <Link to={"/"} className="text-3xl font-bold leading-none" href="#">
           <BsUnity />
         </Link>
-        <div className="lg:hidden ml-auto">
+        <div className="lg:hidden">
           <button
             className="navbar-burger flex items-center  p-3"
             onClick={toggleMenu}
@@ -213,39 +213,39 @@ const Navbar = () => {
         {/* toggle button */}
         <div>
           {!isLoggedIn ? (
-            <>
+            <div className="flex gap-1">
               <Link
                 to={"/login"}
-                className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
+                className=" lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
               >
                 <button>Sign In</button>
               </Link>
               <Link
                 to={"/signup"}
-                className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
+                className="  lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
               >
                 <button>Sign Up</button>
               </Link>
-            </>
+            </div>
           ) : (
-            <>
+            <div className="flex gap-1">
               <Link
-                to={"/profile"}
-                className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.open("/profile", "_blank");
-                }}
+                to={"/account"}
+                className="  lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-sm transition duration-200"
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   window.open("/account", "_blank");
+                // }}
               >
                 <button>Account</button>
               </Link>
               <Link
                 to={"/"}
-                className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
+                className=" lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-sm transition duration-200"
               >
                 <button onClick={handleLogout}>Logout</button>
               </Link>
-            </>
+            </div>
           )}
         </div>
       </nav>
