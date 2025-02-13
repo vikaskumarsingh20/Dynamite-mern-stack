@@ -13,7 +13,7 @@ const Aboutus = () => {
     <>
       <Navbar />
 
-      <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} py-4 md:py-8 lg:py-4`}>
+      <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} mt-12 py-4 md:py-8 lg:py-4`}>
         <div className="container mx-auto p-4">
           <h1 className="text-6xl font-bold text-center">About Us</h1>
           <p className="text-2xl text-center">

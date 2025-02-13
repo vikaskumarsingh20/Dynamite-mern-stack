@@ -11,7 +11,7 @@ const NotFoundPage = () => {
       <Navbar />
 
       {/* <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-purple-500 to-pink-500"> */}
-      <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} flex flex-col items-center justify-center h-screen`}>
+      <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} flex flex-col items-center justify-center h-screen mt-12`}>
         <div className=" flex items-center justify-center mx-auto">
           <img
             src="src\assets\images\404pageremovedbg.png"

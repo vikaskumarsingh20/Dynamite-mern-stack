@@ -27,9 +27,10 @@ const Navbar = () => {
   return (
     <div className={`${darkMode ? "bg-gray-900" : "bg-blue-500"}`}>
       <nav
-        className={`relative px-4 py-4 flex justify-between items-center shadow ${
+        className={`fixed top-0 left-0 right-0 z-50 px-4 py-4 flex justify-between items-center shadow ${
           darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
         }`}
+        style={{ backdropFilter: "blur(10px)" }}
       >
         <Link to={"/"} className="text-3xl font-bold leading-none" href="#">
           <BsUnity />

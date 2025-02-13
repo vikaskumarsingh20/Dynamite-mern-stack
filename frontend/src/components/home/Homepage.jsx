@@ -13,7 +13,7 @@ const Homepage = () => {
   return (
     <>
       <Navbar />
-      <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} py-4 md:py-8 lg:py-4`}>
+      <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} py-4 mt-15 md:py-8 lg:py-4`}>
         <div className={`text-center ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}>
           <div className="flex items-center justify-center mx-auto">
           <img

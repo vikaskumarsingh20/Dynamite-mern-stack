@@ -13,7 +13,7 @@ require("dotenv").config();
 // Connect to MongoDB
 dbConnect();
 
-// Connect to Cloudinary 
+// Connect to Cloudinary  
 cloudinaryConnect();  
 //middleware
 app.use(express.json());

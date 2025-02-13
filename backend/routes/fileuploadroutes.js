@@ -8,8 +8,10 @@ const { imageUploadClodinary, videoUpload, imageReducerUpload, localFileUpload }
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-// router.post( "/imageUploadClodinary",upload.single("file"),imageUploadClodinary);
+
 router.post("/imageUploadClodinary", imageUploadClodinary);
 router.post("/localFileUpload", localFileUpload);
+router.post("/imageReducerUpload", imageReducerUpload);
+router.post("/videoUpload", videoUpload);
 
 module.exports = router;

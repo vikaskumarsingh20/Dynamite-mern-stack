@@ -6,7 +6,7 @@ import Spinner from "../../loading/Spinner";
 
 function Blogs() {
   const { loading, posts } = useContext(BlogAuthContext);
-  console.log(posts);
+  console.log("this is posts",posts);
   return (
     <>
       <Navbar />
