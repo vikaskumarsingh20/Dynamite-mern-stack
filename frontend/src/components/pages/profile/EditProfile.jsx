@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../../contexts/Theme";
+import { ThemeContext } from "../../../contexts/Theme";
 import toast, { Toaster } from 'react-hot-toast';
-import Footer from "../home/Footer";
-import Navbar from "../home/NavBar";
+import Footer from "../../home/Footer";
+import Navbar from "../../home/NavBar";
 import axios from "axios";
 
 function EditProfile() {

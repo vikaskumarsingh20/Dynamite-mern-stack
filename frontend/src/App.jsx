@@ -5,6 +5,7 @@ import AppRoutes from './routes/AppRoutes';
 import { ThemeProvider } from './contexts/Theme';
 import { AuthProvider } from './contexts/AuthContext';
 import  {Toaster} from 'react-hot-toast';
+import {  BlogAuthProvider } from './contexts/BlogAuth';
 
 
 function App() {
@@ -12,10 +13,12 @@ function App() {
   return (
     <ThemeProvider>
     <AuthProvider>
-    <Toaster />
+    <BlogAuthProvider>
       <Router>
         <AppRoutes />
       </Router>
+      <Toaster />
+    </BlogAuthProvider>
     </AuthProvider>
     </ThemeProvider>
   );

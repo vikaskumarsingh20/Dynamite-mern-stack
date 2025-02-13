@@ -1,12 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-import { ThemeContext } from '../../contexts/Theme'
+import { ThemeContext } from '../../../contexts/Theme'
 import axios from 'axios'
-import Navbar from '../home/NavBar'
-import Footer from '../home/Footer'
+import Navbar from '../../home/NavBar'
+import Footer from '../../home/Footer'
 
 function Account() {
   const { darkMode } = useContext(ThemeContext)

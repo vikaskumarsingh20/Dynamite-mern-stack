@@ -37,8 +37,8 @@ const Homepage = () => {
                 high-quality software that meets the needs of users and
                 businesses alike. Welcome to my personal website where I share
                 my projects, experiences, and insights into the world of
-                technology. Here, you'll find a showcase of my work, including
-                web applications, mobile apps, and more. Let's connect and
+                technology. Here, you  will find a showcase of my work, including
+                web applications, mobile apps, and more. Lets connect and
                 explore the endless possibilities of technology together!
               </p>
             </div>

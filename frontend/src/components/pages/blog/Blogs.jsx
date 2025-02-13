@@ -1,80 +1,47 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useContext } from "react";
 import Navbar from "../../home/NavBar";
 import Footer from "../../home/Footer";
-import { ThemeContext } from "../../../contexts/Theme";
+import { BlogAuthContext } from "../../../contexts/BlogAuth";
+import Spinner from "../../loading/Spinner";
 
 function Blogs() {
-  const{darkMode} = useContext(ThemeContext)
+  const { loading, posts } = useContext(BlogAuthContext);
+  console.log(posts);
   return (
     <>
       <Navbar />
-      {/* <div className="container mx-auto p-4"> */}
-      <div  className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} container mx-auto p-4`}>
-        <div className="space-y-4">
-          <div className="border-b-2 border-b-gray-300 drop-shadow-md bg-gray-200">
-            <header className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200'} py-4 border-b-2 border-b-gray-300 drop-shadow-md`}>
-              <h1 className="flex flex-col items-center text-3xl font-bold uppercase text-center">
-                Blogs <small className="text-sm font-normal">(Page using Context API)</small>
-              </h1>
-            </header>
+      <div>
+        {loading ? (
+          <Spinner />
+        ) : posts.length === 0 ? (
+          <div className="flex justify-center items-center h-screen">
+            <p className="text-2xl font-semibold">No posts found.</p>
           </div>
-          {[1, 2, 3].map((item) => (
-            <div key={item} className="w-11/12 max-w-2xl mx-auto">
-              <p className="text-sm my-1">
-                {" "}
-                By <span className="italic">vikas</span>
-                {" on"}{" "}
-                <span className="font-semibold underline cursor-pointer">
-                  Web Development
-                </span>
-              </p>
-              <p> Posted on 01-01-2023</p>
+        ) : (
+          posts.map((post) => (
+            <div key={post.id}>
+              <p>{post.title}</p>
               <p>
-                Responsive design is an essential aspect of modern web
-                development, ensuring websites are accessible and usable on any
-                device. This post explores why responsive design is important,
-                including the benefits for user experience, accessibility, and
-                mobile-first design.
+                By <span className="italic">{post.author}</span> on{" "}
+                <span className="font-semibold underline cursor-pointer">
+                  {post.category}
+                </span>
               </p>
-              <div className="flex flex-wrap gap-x-2 items-center">
-                <span className="text-xs font-semibold underline text-blue-700 cursor-pointer">
-                  #Web Development
-                </span>
-                <span className="text-xs font-semibold underline text-blue-700 cursor-pointer">
-                  #Responsive Design
-                </span>
-                <span className="text-xs font-semibold underline text-blue-700 cursor-pointer">
-                  #Mobile-first
-                </span>
-                <span className="text-xs font-semibold underline text-blue-700 cursor-pointer">
-                  #User Experience
-                </span>
-                <span className="text-xs font-semibold underline text-blue-700 cursor-pointer">
-                  #Accessibility
-                </span>
+              <p>posted on {post.date}</p>
+              <p>{post.content}</p>
+              <div>
+                {post.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="text-xs font-semibold underline text-blue-700 cursor-pointer"
+                  >
+                    #{tag}
+                  </span>
+                ))}
               </div>
             </div>
-          ))}
-          {/* pagination */}
-          <div
-            className={`  inset-x-0 ${darkMode ? 'bg-gray-800' : 'bg-white-200'} py-2 border-t-2 border-t-gray-300`}
-          >
-            <div className="flex items-center gap-x-3 w-11/12 max-w-2xl mx-auto">
-              <button
-                className={`border-2 border-gray-300 py-1 px-4 rounded-md cursor-pointer ${darkMode ? 'text-white' : 'text-black'}`}
-              >
-                Previous
-              </button>
-              <button
-                className={`border-2 border-gray-300 py-1 px-4 rounded-md cursor-pointer ${darkMode ? 'text-white' : 'text-black'}`}
-              >
-                Next
-              </button>
-              <p className={`text-sm font-semibold ml-auto ${darkMode ? 'text-white' : 'text-black'}`}>Page 4 of 6</p>
-            </div>
-          </div>
-        </div>
+          ))
+        )}
       </div>
       <Footer />
     </>
