@@ -6,23 +6,22 @@ export const BlogAuthContext = createContext();
 
 export const BlogAuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
-    const [posts, setPosts] = useState([]); // renamed for clarity
+    const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
-    const [totalPage, setTotalPage] = useState(null);
+    const [totalPages, setTotalPages] = useState(null);
 
     const fetchBlogs = async () => {
         setLoading(true);
         try {
             const response = await fetch(`${blogUrl}?page=${page}`);
-            console.log("Response:", response);
             const data = await response.json();
             setPage(data.page);
-            setPosts(data.blogs);
-            setTotalPage(data.totalPage);
+            setPosts(data.posts);
+            setTotalPages(data.totalPage);
         } catch (error) {
             console.error("Error fetching blogs:", error);
             setPosts([]);
-            setTotalPage(null);
+            setTotalPages(null);
             setPage(1);
         } finally {
             setLoading(false);
@@ -31,12 +30,12 @@ export const BlogAuthProvider = ({ children }) => {
 
     const handlePageChange = (page) => {
         setPage(page);
-        fetchBlogs();
+        // fetchBlogs();
     };
 
     useEffect(() => {
         fetchBlogs();
-    }, [page]);
+    }, []);
 
     return (
         <BlogAuthContext.Provider
@@ -46,9 +45,10 @@ export const BlogAuthProvider = ({ children }) => {
                 setPosts,
                 page,
                 setPage,
-                totalPage,
-                setTotalPage,
+                totalPages,
+                setTotalPages,
                 handlePageChange,
+                
             }}
         >
             {children}
