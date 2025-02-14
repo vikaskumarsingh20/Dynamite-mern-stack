@@ -9,6 +9,7 @@ import { ThemeContext } from "../../../contexts/Theme";
 function Blogs() {
   const { darkMode } = useContext(ThemeContext);
   const { loading, posts, page, totalPages, handlePageChange, } = useContext(BlogAuthContext);
+  console.log("all datas",posts, page, totalPages, handlePageChange);
   return (
     <div className={`${darkMode ? "bg-gray-700" : "bg-gray-200"}`} >
       <Navbar />

@@ -10,14 +10,14 @@ export const BlogAuthProvider = ({ children }) => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(null);
 
-    const fetchBlogs = async () => {
+    const fetchBlogs = async (page = 1) => {
         setLoading(true);
         try {
             const response = await fetch(`${blogUrl}?page=${page}`);
             const data = await response.json();
             setPage(data.page);
             setPosts(data.posts);
-            setTotalPages(data.totalPage);
+            setTotalPages(data.totalPages);
         } catch (error) {
             console.error("Error fetching blogs:", error);
             setPosts([]);
@@ -28,14 +28,14 @@ export const BlogAuthProvider = ({ children }) => {
         }
     };
 
-    const handlePageChange = (page) => {
-        setPage(page);
-        // fetchBlogs();
+    const handlePageChange = (newPage) => {
+        setPage(newPage);
+        // fetchBlogs(page);
     };
 
     useEffect(() => {
-        fetchBlogs();
-    }, []);
+        fetchBlogs(page);
+    },[page]);
 
     return (
         <BlogAuthContext.Provider
