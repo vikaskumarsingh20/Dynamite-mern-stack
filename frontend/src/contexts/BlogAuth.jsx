@@ -30,7 +30,6 @@ export const BlogAuthProvider = ({ children }) => {
 
     const handlePageChange = (newPage) => {
         setPage(newPage);
-        // fetchBlogs(page);
     };
 
     useEffect(() => {

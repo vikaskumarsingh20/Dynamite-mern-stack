@@ -73,8 +73,8 @@ const Navbar = () => {
             </svg>
           </li>
           <li>
-            <NavLink to={"/about-us"} className="text-md hover:text-blue-600">
-              About Us
+            <NavLink to={"/blogs"} className="text-md hover:text-blue-600">
+              Blogs
             </NavLink>
           </li>
           <li className="text-gray-300">
@@ -158,9 +158,10 @@ const Navbar = () => {
               />
             </svg>
           </li>
+
           <li>
-            <NavLink to={"/blogs"} className="text-md hover:text-blue-600">
-              Blogs
+            <NavLink to={"/about-us"} className="text-md hover:text-blue-600">
+              About Us
             </NavLink>
           </li>
           <li className="text-gray-300">
