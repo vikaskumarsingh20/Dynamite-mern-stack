@@ -6,11 +6,14 @@ import { ThemeProvider } from './contexts/Theme';
 import { AuthProvider } from './contexts/AuthContext';
 import  {Toaster} from 'react-hot-toast';
 import {  BlogAuthProvider } from './contexts/BlogAuth';
+import { Provider } from 'react-redux';
+import store from './redux/Store';
 
 
 function App() {
 
   return (
+    <Provider store={store}>
     <ThemeProvider>
     <AuthProvider>
     <BlogAuthProvider>
@@ -21,6 +24,7 @@ function App() {
     </BlogAuthProvider>
     </AuthProvider>
     </ThemeProvider>
+    </Provider>
   );
 }
 

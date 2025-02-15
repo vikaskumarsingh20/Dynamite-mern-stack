@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserList from "./UserList";
+import Counter from "./Counter";
 
 const LogicComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -64,6 +65,16 @@ const LogicComponent = () => {
       <div className="bg-white p-4 rounded-md shadow-lg">
         <UserList />
       </div>
+
+ {/* redux counter for testing */} 
+ <div>
+ <h2 className="text-4xl font-bold text-center mt-4 mb-4">
+        Redux Counter
+      </h2>
+      <div className="bg-white p-4 rounded-md shadow-lg">
+        <Counter />
+      </div>
+ </div>
     </div>
   );
 };
