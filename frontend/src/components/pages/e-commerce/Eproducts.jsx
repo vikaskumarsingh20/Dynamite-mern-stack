@@ -2,11 +2,30 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../../contexts/Theme";
+import { useDispatch, useSelector } from "react-redux";
+import { add, remove } from "../../../redux/slices/CartSlice";
+import { toast } from "react-toastify";
 
 function Eproducts({ post }) {
   const [isSelected, setIsSelected] = useState(false);
-  const {darkMode} = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext);
 
+  // const { cart } = useSelector((state) => state);
+  const { items: cart } = useSelector((state) => state.cart || { items: [] });
+
+  const disPatch = useDispatch();
+
+  const addToCart = () => {
+    disPatch(add(post));
+    toast.success("Item added to cart");
+  };
+  
+  console.log("Add to cart button" , addToCart);
+
+  const removeFromCart = () => {
+    disPatch(remove(post.id));
+    toast.error("Item removed from cart");
+  }
   return (
     <div
       className={`group hover:scale-105 transition duration-300 ease-in flex flex-col items-center 
@@ -32,7 +51,7 @@ function Eproducts({ post }) {
           <p className="text-green-600 font-semibold">${post.price}</p>
         </div>
 
-        {/* {cart.some((p) => p.id == post.id) ? (
+        {cart.some((p) => p.id == post.id) ? (
           <button
             className={`text-[12px] border-2 rounded-full font-semibold p-1 px-3 uppercase transition duration-300 ease-in
             ${darkMode ? 'text-white border-white hover:bg-white hover:text-black' : 'text-gray-700 border-gray-700 hover:bg-gray-700 hover:text-white'}`}
@@ -42,13 +61,13 @@ function Eproducts({ post }) {
           </button>
         ) : (
           <button
-            className={`text-[12px] border-2 rounded-full font-semibold p-1 px-3 uppercase transition duration-300 ease-in
+            className={`text-[12px] border-2 rounded-full font-semibold p-1 px-3 uppercase transition duration-300 ease-in text-nowrap
             ${darkMode ? 'text-white border-white hover:bg-white hover:text-black' : 'text-gray-700 border-gray-700 hover:bg-gray-700 hover:text-white'}`}
             onClick={addToCart}
           >
             Add to Cart
           </button>
-        )} */}
+        )}
       </div>
     </div>
   );

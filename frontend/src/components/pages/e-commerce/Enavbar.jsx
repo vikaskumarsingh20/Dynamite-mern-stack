@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext } from "react";
-import logo from "../../../assets/images/EcommerceLogo.png";
 import { FaCartShopping } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../../contexts/Theme";

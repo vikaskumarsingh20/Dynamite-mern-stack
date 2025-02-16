@@ -42,7 +42,8 @@ useEffect(() => {
 
         <div>
           {loading ? <Spinner /> : posts.length > 0 ? (
-            <div className={`min-h-[80vh] grid sm:grid-cols-2 md:grid-cols-3 space-x-5 space-y-10 lg:grid-cols-4 max-w-6xl mx-auto p-2 ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
+            <div className={`min-h-[80vh] grid sm:grid-cols-2 md:grid-cols-3 space-x-5 space-y-10 lg:grid-cols-4 
+            max-w-6xl mx-auto p-2 ${darkMode ? 'bg-gray-700' : 'bg-white'}`}>
               {posts.map((post) => (
                 <Eproducts key={post.id} post={post} />
               ))}
