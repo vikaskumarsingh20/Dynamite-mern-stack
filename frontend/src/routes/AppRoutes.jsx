@@ -16,6 +16,9 @@ import { AuthContext } from "../contexts/AuthContext";
 // import Profile from "../components/pages/Profile";
 import Account from "../components/pages/profile/Account";
 import EditProfile from "../components/pages/profile/EditProfile";
+import Ehome from "../components/pages/e-commerce/Ehome";
+import Ecart from "../components/pages/e-commerce/Ecart";
+
 
 const AppRoutes = () => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -42,6 +45,9 @@ const AppRoutes = () => {
       <Route path="/newpassword" element={<NewPassword />} />
       <Route path="/about-us" element={<Aboutus />} />
       <Route path="/blogs" element={<Blogs />} />
+      <Route path="/services/e-home" element={<Ehome />} />
+      <Route path="/services/e-cart" element={<Ecart />} />
+
       <Route path="/dashboard" element={<Outlet />}>
         <Route
           index

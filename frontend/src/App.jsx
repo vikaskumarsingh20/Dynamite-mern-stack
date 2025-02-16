@@ -7,7 +7,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import  {Toaster} from 'react-hot-toast';
 import {  BlogAuthProvider } from './contexts/BlogAuth';
 import { Provider } from 'react-redux';
-import store from './redux/Store';
+import store from './redux/store/Store';
 
 
 function App() {
