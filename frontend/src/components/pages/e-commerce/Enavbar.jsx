@@ -3,9 +3,12 @@ import React, { useContext } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../../contexts/Theme";
+import { useSelector } from "react-redux";
 
 function Enavbar() {
   const {darkMode} = useContext(ThemeContext)
+
+  const {cart} = useSelector((state) => state);
   return (
     <nav className={`${darkMode ? 'bg-gray-900' : 'bg-black'}`}>
       <div className="flex justify-between items-center px-4 py-2 mt-[68px] mx-auto max-w-5xl">
@@ -23,8 +26,16 @@ function Enavbar() {
             </button>
           </NavLink>
           <NavLink to="/services/e-cart">
-            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-full p-2 cursor-pointer`}>
+            <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-full p-2 cursor-pointer relative`}>
               <FaCartShopping className={`${darkMode ? 'text-white' : 'text-green-900'}`} />
+
+              {
+                    cart.length > 0 &&
+                    <span
+                    className="absolute -top-1 -right-2 bg-green-600 text-xs w-5 h-5 flex 
+                    justify-center items-center animate-bounce rounded-full text-white" 
+                    >{cart.length}</span>
+                  }
             </div>
           </NavLink>
         </div>
