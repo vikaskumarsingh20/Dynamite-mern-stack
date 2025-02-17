@@ -1,14 +1,16 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch } from 'react-redux';
 import toast  from 'react-hot-toast';
 import { remove } from '../../../redux/slices/CartSliceE';
+import { ThemeContext } from '../../../contexts/Theme';
 
 function EcartItem({item }) {
 
   const dispatch = useDispatch();
+  const{darkMode} = useContext(ThemeContext);
 
   const removeFromCart = () => {
     dispatch(remove(item.id));

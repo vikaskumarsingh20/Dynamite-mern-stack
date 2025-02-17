@@ -25,7 +25,7 @@ function Ecart() {
 
     <Navbar />
      <Enavbar />
-    <div className="max-w-[1200px] mx-auto flex flex-col">
+    <div className="max-w-[1200px] mx-auto flex flex-col justify-center items-center">
 
       {cart.length > 0 ? (
          <div className="flex items-center p-2 md:p-5 justify-between mt-2 mb-2 md:mx-5 ">

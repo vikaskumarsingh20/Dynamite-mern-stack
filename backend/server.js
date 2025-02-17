@@ -15,18 +15,21 @@ dbConnect();
 
 // Connect to Cloudinary  
 cloudinaryConnect();  
+
+// CORS Configuration
+app.use(
+  cors({
+    // origin: process.env.CLIENT_URL,
+    origin:"http://localhost:3000/",
+    credentials: true,
+  })
+);
 //middleware
 app.use(express.json());
 
 app.use(cookiesParser());
 
-// CORS Configuration
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-  })
-);
+
 
 // File Upload
 app.use(fileupload({
