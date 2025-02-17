@@ -3,35 +3,39 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { remove } from '../../../redux/slices/CartSlice';
-import { toast } from "react-toastify";
+import toast  from 'react-hot-toast';
+import { remove } from '../../../redux/slices/CartSliceE';
 
-function EcartItem({item, itemIndex }) {
+function EcartItem({item }) {
 
   const dispatch = useDispatch();
 
   const removeFromCart = () => {
     dispatch(remove(item.id));
-    toast.success("Item Removed");
+    toast.error("Item Removed");
   };
   return (
-    <div className="w-[100%] md:w-[60%] flex flex-col p-2">
-      <div className=" ">
-        <div className="w-[60%] flex flex-col">
+    <div className="w-[100%] md:w-[90%] flex flex-col p-2  border-b-2 border-slate-500 md:max-w-[1200px] md:mx-auto">
+      <div className="flex items-center p-2 md:p-5 justify-between  mt-2 mb-2 md:mx-5 ">
+        <div className="object-cover w-[30%] md:w-[20%]">
           <img src={item.image}
          />
         </div>
 
         <div className="md:ml-10 self-start space-y-5 w-[100%] md:w-[70%]">
-          <h1 className="text-xl text-slate-700 font-semibold">{item.title}</h1>
+        <div>
+        <h1 className="text-xl text-slate-700 font-semibold">{item.title}</h1>
           <h1 className="text-base text-slate-700 font-medium">
             {item.description}
           </h1>
-          <div className="font-bold text-lg text-green-600">
-            <p> ${item.price}</p>
+        </div>
+
+
+          <div className="flex items-center justify-between">
+            <p className='font-bold text-lg text-green-600'> ${item.price}</p>
             <div
               onClick={removeFromCart}
-              className="bg-red-200 group hover:bg-red-400 transition-transform duration-300 cursor-pointer rounded-full p-3 mr-3"
+              className=" bg-red-200 group hover:bg-red-400 transition-transform duration-300 cursor-pointer rounded-full p-3 mr-3"
             >
               {/* <FcDeleteDatabase/> */}
               <svg

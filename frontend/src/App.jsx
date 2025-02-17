@@ -7,13 +7,13 @@ import { AuthProvider } from './contexts/AuthContext';
 import  {Toaster} from 'react-hot-toast';
 import {  BlogAuthProvider } from './contexts/BlogAuth';
 import { Provider } from 'react-redux';
-import store from './redux/store/Store';
+import estore from './redux/store/Estore';
 
 
 function App() {
 
   return (
-    <Provider store={store}>
+    <Provider store={estore}>
     <ThemeProvider>
     <AuthProvider>
     <BlogAuthProvider>

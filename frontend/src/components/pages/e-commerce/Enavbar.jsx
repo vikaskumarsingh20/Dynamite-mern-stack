@@ -17,7 +17,7 @@ function Enavbar() {
           />
         </NavLink>
         <div className="flex items-center space-x-2">
-          <NavLink to="/services/e-cart">
+          <NavLink to="/services/e-home">
             <button className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} px-3 py-1 rounded-md cursor-pointer`}>
               Home
             </button>
