@@ -19,7 +19,7 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const { darkMode } = useContext(ThemeContext);
 
-  const { login,loginWithGoogle } = useContext(AuthContext);
+  const { setIsLoggedIn,loginWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLoginWithGoogle = async () => {
@@ -31,12 +31,6 @@ function LoginPage() {
     }
   };
 
-  // const handleLogin = async (event) => {
-  //   event.preventDefault();
-  //   login();
-  //   navigate('/');
-  // };
-
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     setDataFrom((prevState) => ({
@@ -44,7 +38,7 @@ function LoginPage() {
       [name]: type === "checkbox" || type === "radio" ? checked : value,
     }));
   };
-
+// handle Submit button
   const handleSubmit = async (event) => {
     event.preventDefault();
    
@@ -61,6 +55,7 @@ function LoginPage() {
     console.log("data",data);
     if (response.ok) {
       setDataFrom({ email: "", password: "" });
+      setIsLoggedIn(true);
       navigate("/");
       toast.success("Login successful!");
     } else {
@@ -74,7 +69,8 @@ function LoginPage() {
  
   };
 
-  const togglePasswordVisiblity = () => {
+  const togglePasswordVisiblity = (event) => {
+    event.preventDefault();
     setShowPassword(!showPassword);
   };
 

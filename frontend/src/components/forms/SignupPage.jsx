@@ -6,6 +6,7 @@ import Footer from "../home/Footer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ThemeContext } from "../../contexts/Theme";
 import { AuthContext } from "../../contexts/AuthContext";
+import toast from "react-hot-toast";
 
 function FormTailwind() {
   const [dataFrom, setDataFrom] = useState({
@@ -18,7 +19,7 @@ function FormTailwind() {
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const { darkMode } = useContext(ThemeContext);
-  const {signup} = useContext(AuthContext);
+  const {setIsLoggedIn} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -28,28 +29,43 @@ function FormTailwind() {
       [name]: type === "checkbox" || type === "radio" ? checked : value,
     }));
   };
-  const handleSignup = async (event) => {
-    event.preventDefault();
-    signup();
-    navigate('/');
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setDataFrom((prevState) => ({ ...prevState, loading: true }));
-    console.log(dataFrom);
-    const success = signup(dataFrom.email, dataFrom.password, dataFrom.repeatPassword);
 
-    if (success) {
-      navigate("/"); 
-    } else {
-      setDataFrom((prevState) => ({ ...prevState, loading: false }));
-      setError("Signup failed. Please check your details.");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    try {
+      console.log("Signup data:", dataFrom);
+      const response = await fetch("http://localhost:4000/api/v1/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataFrom),
+      });
+      const data = await response.json();
+      console.log(data);
+      setDataFrom({ email: "", password: "", repeatPassword: "" });
+
+      if (response.ok) {
+        setIsLoggedIn(true);
+        navigate("/login");
+        toast.success("Signup successful!");
+      } else {
+        console.log(data.error);
+        toast.error(data.error || "Invalid user credentials");
+      }
+      
+    } catch (error) {
+      console.error("Signup Error:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
     }
   };
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (event) => {
+    event.preventDefault();
     setShowPassword(!showPassword);
   };
-  const toggleRepeatPasswordVisibility = () => {
+  const toggleRepeatPasswordVisibility = (event) => {
+    event.preventDefault();
     setShowRepeatPassword(!showRepeatPassword);
   };
 
@@ -196,7 +212,6 @@ function FormTailwind() {
               className="w-full cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
            focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center
             dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            onClick={ handleSignup}
             >
               {dataFrom.loading ? "Loading..." : "Register new account"}
             </button>

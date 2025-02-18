@@ -86,7 +86,7 @@ const loginWithGoogle = async () => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, signup,loginWithGoogle }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout, setIsLoggedIn,signup,loginWithGoogle }}>
          <Toaster />
       {children}
     </AuthContext.Provider>
