@@ -5,9 +5,9 @@ import Navbar from "../home/NavBar";
 import Footer from "../home/Footer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-// import { toast } from "react-toastify";
 import { ThemeContext } from "../../contexts/Theme";
 import { AuthContext } from "../../contexts/AuthContext";
+import toast from "react-hot-toast";
 
 function LoginPage() {
   const [dataFrom, setDataFrom] = useState({
@@ -18,6 +18,7 @@ function LoginPage() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const { darkMode } = useContext(ThemeContext);
+
   const { login,loginWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -30,11 +31,11 @@ function LoginPage() {
     }
   };
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    login();
-    navigate('/');
-  };
+  // const handleLogin = async (event) => {
+  //   event.preventDefault();
+  //   login();
+  //   navigate('/');
+  // };
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -44,13 +45,33 @@ function LoginPage() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setDataFrom((prevState) => ({ ...prevState, loading: true }));
-    console.log(dataFrom);
-    setTimeout(() => {
-      setDataFrom((prevState) => ({ ...prevState, loading: false }));
-    }, 2000);
+   
+  try {
+    console.log("Login data:", dataFrom);
+    const response = await fetch("http://localhost:4000/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataFrom),
+    });
+    const data = await response.json();
+    console.log("data",data);
+    if (response.ok) {
+      setDataFrom({ email: "", password: "" });
+      navigate("/");
+      toast.success("Login successful!");
+    } else {
+      console.error("Login Error:", data.error);
+      toast.error(data.error || "Invalid user credentials");
+    }
+  } catch (error) {
+    console.error("Login Error:", error);
+    toast.error("An unexpected error occurred. Please try again later.");
+  }
+ 
   };
 
   const togglePasswordVisiblity = () => {
@@ -170,10 +191,7 @@ function LoginPage() {
                 type="submit"
                 className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 
                 px-4 rounded focus:outline-none focus:shadow-outline"
-                disabled={
-                  dataFrom.email === "" || dataFrom.password === "" || dataFrom.loading
-                }
-                onClick={handleLogin}
+               
               >
                 {dataFrom.loading ? "Loading..." : " Sign In"}
               </button>
