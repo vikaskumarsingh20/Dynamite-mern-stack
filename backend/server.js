@@ -17,14 +17,25 @@ dbConnect();
 cloudinaryConnect();  
 
 // CORS Configuration
+const allowedOrigins = [
+  "http://localhost:3000", // Local development
+  process.env.CLIENT_URL, // Deployed frontend (e.g., Vercel)
+];
+
 app.use(
   cors({
-    // origin: "http://localhost:3000",
-    origin: process.env.CLIENT_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.log("❌ Blocked by CORS: ", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
-    optionsSuccessStatus: 200, // For legacy browser support
+    optionsSuccessStatus: 200, // Legacy browser support
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Content-Type,Authorization"
+    allowedHeaders: "Content-Type,Authorization",
   })
 );
 //middleware
