@@ -19,7 +19,8 @@ cloudinaryConnect();
 // CORS Configuration
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: process.env.CLIENT_URL,
     credentials: true,
     optionsSuccessStatus: 200, // For legacy browser support
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
