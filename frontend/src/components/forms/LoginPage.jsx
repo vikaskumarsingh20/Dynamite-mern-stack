@@ -8,6 +8,7 @@ import { FcGoogle } from "react-icons/fc";
 import { ThemeContext } from "../../contexts/Theme";
 import { AuthContext } from "../../contexts/AuthContext";
 import toast from "react-hot-toast";
+import logo  from "../../assets/images/Animation-PNG-HD.png"
 
 function LoginPage() {
   const [dataFrom, setDataFrom] = useState({
@@ -16,7 +17,7 @@ function LoginPage() {
     remember: "",
     loading: false,
   });
-  
+
   const [showPassword, setShowPassword] = useState(false);
   const { darkMode } = useContext(ThemeContext);
 
@@ -89,7 +90,7 @@ function LoginPage() {
       >
         <div className=" flex items-center justify-center mx-auto">
           <img
-            src="src/assets/images/Animation-PNG-HD.png"
+            src={logo}
             alt="Workflow"
             className="hidden sm:block h-auto w-[25%] max-w-xs sm:max-w-sm md:max-w-md xl:max-w-xl 2xl:max-w-2xl"
           />

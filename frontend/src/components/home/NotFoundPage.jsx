@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { ThemeContext } from "../../contexts/Theme";
+import logo  from "../../assets/images/404pageremovedbg.png"
 const NotFoundPage = () => {
   const{darkMode} = useContext(ThemeContext)
   return (
@@ -14,7 +15,7 @@ const NotFoundPage = () => {
       <div className={`${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'} flex flex-col items-center justify-center h-screen mt-12`}>
         <div className=" flex items-center justify-center mx-auto">
           <img
-            src="src\assets\images\404pageremovedbg.png"
+            src={logo}
             alt="Workflow"
             className="h-auto w-full md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 "
           />

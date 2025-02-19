@@ -7,6 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ThemeContext } from "../../contexts/Theme";
 import { AuthContext } from "../../contexts/AuthContext";
 import toast from "react-hot-toast";
+import logo  from "../../assets/images/Animation-PNG-HD.png"
 
 function FormTailwind() {
   const [dataFrom, setDataFrom] = useState({
@@ -82,7 +83,7 @@ function FormTailwind() {
       >
         <div className=" flex items-center justify-center mx-auto">
           <img
-            src="src/assets/images/Animation-PNG-HD.png"
+            src={logo}
             alt="Workflow"
             className="hidden sm:block h-auto w-[25%] max-w-xs sm:max-w-sm md:max-w-md xl:max-w-xl 2xl:max-w-2xl"
           />

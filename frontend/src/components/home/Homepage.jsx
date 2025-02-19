@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { ThemeContext } from "../../contexts/Theme";
+import logo  from "../../assets/images/Animation-PNG-HD.png"
 
 const Homepage = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -17,7 +18,7 @@ const Homepage = () => {
         <div className={`text-center ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'}`}>
           <div className="flex items-center justify-center mx-auto">
           <img
-            src="src/assets/images/Animation-PNG-HD.png"
+            src={logo}
             alt="Workflow"
             className="hidden sm:block h-auto w-[17%] max-w-xs sm:max-w-sm md:max-w-md xl:max-w-xl 2xl:max-w-2xl"
           />
