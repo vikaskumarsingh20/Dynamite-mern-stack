@@ -46,7 +46,7 @@ function LoginPage() {
    
   try {
     console.log("Login data:", dataFrom);
-    const response = await fetch("http://localhost:4000/api/v1/login", {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

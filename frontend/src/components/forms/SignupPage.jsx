@@ -36,7 +36,7 @@ function FormTailwind() {
     
     try {
       console.log("Signup data:", dataFrom);
-      const response = await fetch("http://localhost:4000/api/v1/signup", {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
